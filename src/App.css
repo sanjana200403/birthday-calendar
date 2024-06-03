@@ -28,7 +28,7 @@
 }
 
 .favorites-container {
-  width: 50%;
+  width: 90%;
   max-height: 300px;
   overflow-y: auto;
   border: 2px solid #ccc; /* Use a lighter border color */
@@ -49,6 +49,7 @@
 }
 
 .birthday-list-container {
+  width: 50%;
   margin-top: 30px; /* Add spacing above birthday list */
   height: 400px; /* Adjust height as needed */
   overflow-y: auto;
@@ -68,6 +69,7 @@
     flex-direction: column;
   }
   .birthday-list-container{
+    width: 95%;
     height: 400px;
 
   }
@@ -77,6 +79,7 @@
   .favorites-container{
     width: 95%;
   }
+  
 
   
 }

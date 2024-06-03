@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import './App.css';
 
 const App = () => {
@@ -8,6 +10,7 @@ const App = () => {
   const [birthdays, setBirthdays] = useState([]);
   const [loading,setLoading] = useState(false)
   const [query,setQuery] = useState('')
+  
   const [favoriteBirthdays, setFavoriteBirthdays] = useState({});
   const obj = {
     "june 2":['g','o'],
@@ -45,6 +48,8 @@ const App = () => {
   const fetchBirthdays = (date) => {
 
     const formattedDate = `${date.getMonth() + 1}/${date.getDate()}`;
+
+    setQuery("")
     setLoading(true); // Set loading state to true before the fetch request
     fetch(`https://api.wikimedia.org/feed/v1/wikipedia/en/onthisday/births/${formattedDate}`)
       .then((res) => res.json())
@@ -64,6 +69,7 @@ const App = () => {
       ...prev,
       [formattedDate]: [...(prev[formattedDate] || []), birthday.text],
     }));
+    toast.success("Add to favorite")
 
     console.log(favoriteBirthdays,"fav")
     console.log(Object.entries(favoriteBirthdays))
@@ -81,6 +87,7 @@ const App = () => {
       );
       return updatedFavorites;
     });
+    toast.error("Remove from favorite")
   };
   
   return (
@@ -194,6 +201,7 @@ const App = () => {
         </div>
         ))
       } */}
+        <ToastContainer />
     </div>
   );
 };
